@@ -67,7 +67,7 @@ if(edadUser>=edadObligatoria){
 }
 */
 
-/*
+
 let peso = prompt("Ingrese su peso en Kg");
 let altura = prompt ("Ingrese su altura en metros (Ej: 1.75)");
 let indice = peso / (altura **2 );
@@ -82,4 +82,4 @@ if (indice >= 25.0 ) {
     alert("Estas un poco pasado en tu peso amigo/a")
 
 } 
-*/
+
