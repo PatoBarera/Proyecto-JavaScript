@@ -1,0 +1,28 @@
+main { 
+    background-color:rgb(42, 110, 188);
+    text-align: center;
+    
+
+
+}
+
+.bienvenido {
+    padding-top: 30px;
+    margin-bottom: 80px;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: blanchedalmond;
+}
+
+.boton {
+    margin-bottom: 100px;
+}
+
+h2 {
+        font-size: 20px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: blanchedalmond;
+        
+    }
