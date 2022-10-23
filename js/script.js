@@ -192,6 +192,8 @@ return info;
 alert (crearStringResultado( ordenar(criterio, discos))) */
 
 
+
+/*
 function suma(numeroUno, numeroDos) {
     let resultado = numeroUno + numeroDos;
     return resultado;
@@ -266,4 +268,168 @@ function calculadora() {
     }
 }
 
-calculadora()
+calculadora()  */
+
+
+
+
+// Fake Databases de Usuarios y Mascotas (A esta DB realmente se accede por Backend)
+
+const usuarios = [{
+
+    nombre: 'Luli',
+    mail: 'luli.baiter@mail.com',
+    pass: 'luliluliluli'
+
+},
+
+{
+    nombre: 'Pato',
+    mail: 'patobarera@mail.com',
+    pass: 'pato123'
+
+},
+
+{
+    nombre: 'Ignacio',
+    mail: 'ignaciowitting@mail.com',
+    pass: 'ignacio123'
+
+}]
+
+const mascotas = [{
+
+    nombre: 'Veintidos',
+    especie: 'gato',
+    edad: 2,
+    peso: 6
+},
+
+{
+    nombre: 'Fermin',
+    especie: 'perro',
+    edad: 14,
+    peso: 12
+},
+
+{
+    nombre: 'Pepe',
+    especie: 'sapo',
+    edad: 5,
+    peso: 1
+}]
+
+// Elementos del DOM que voy a necesitar
+const mailLogin = document.getElementById('emailLogin'),
+    passLogin = document.getElementById('passwordLogin'),
+    recordar = document.getElementById('recordarme'),
+    btnLogin = document.getElementById('login'),
+    modalEl = document.getElementById('modalLogin'),
+    modal = new bootstrap.Modal(modalEl),
+    contTarjetas = document.getElementById('tarjetas'),
+    toggles = document.querySelectorAll('.toggles');
+
+
+function validarUsuario(usersDB, user, pass) {
+    let encontrado = usersDB.find(userDB => userDB.mail == user);
+
+    if (typeof encontrado === 'undefined') {
+        return false;
+    } else {
+        if (encontrado.pass != pass) {
+            return false;
+        } else {
+            return encontrado;
+        }
+
+    }
+
+}
+
+
+//funcion guardar datos que recuperamos de la database en el storage
+function guardarDatos(usuarioDB, storage) {
+    const usuario = {
+        'name': usuarioDB.nombre,
+        'user': usuarioDB.mail,
+        'pass': usuarioDB.pass
+    }
+
+    storage.setItem('usuario', JSON.stringify(usuario));
+}
+
+//Cambio el DOM para mostrar el nombre del usuario logueado, usando los datos del storage.
+function saludar(usuario) {
+    nombreUsuario.innerHTML = `Bienvenido/a, <span>${usuario.name}<span>`
+}
+
+//Limpiar los storages
+function borrarDatos() {
+    localStorage.clear();
+    sessionStorage.clear();
+}
+
+function recuperarUsuario() {
+    let usuarioEnStorage = JSON.parse(storage.tegItem('usuario'));
+    return usuarioEnStorage;
+}
+
+//Funcion para revisar si hay usuarios guardados en el storage, y en ese caso evitar todo el proceso de login.
+function estaLogueado(usuario) {
+    if (usuario) {
+        saludar(usuario);
+        mostrarMascota(mascotas);
+        presentarInfo(toggles, 'd-none');
+    }
+}
+
+
+//
+function presentarInfo(array, clase) {
+    array.forEach(element => {
+        element.classList.toggle(clase);
+    })
+}
+
+
+//Creo HTML dinamico para mostrar la informacion de las mascotas a partir del array fake DB
+function mostrarInfoMascota(array) {
+    contTarjetas.innerHTML = '';
+    array.forEach(element => {
+        let html = 
+
+    })
+}
+
+btnLogin.addEventListener('click', (e) => {
+
+    e.preventDefault();
+
+    //validamos que los campos mail y pass esten completos  
+    if (!mailLogin.value || !passLogin.value) {
+        alert('todos los campos son requeridos');
+    } else {
+        let data = validarUsuario(usuarios, mailLogin.value, passLogin.value);
+        if (!data) {
+            alert('Usuario y/o contraseña erroneos');
+        } else {
+            if (recordar.checked) {
+                guardarDatos(data, localStorage);
+                saludar(recuperarUsuario(localStorage));
+            } else {
+                guardarDatos(data, localStorage);
+                saludar(recuperarUsuario(localStorage));
+            }
+
+            modal.hide();
+
+            mostrarInfoMascota(mascotas);
+            presentarInfo(toggles, 'd-none');
+        }
+    }
+
+
+})
+
+btn.Loguot.addEventListener()
+
